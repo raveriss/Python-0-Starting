@@ -4,7 +4,8 @@ def all_thing_is_obj(object: any) -> int:
     Returns 42 always.
 
     Note:
-        If built-in functions were allowed, it would be clever to use isinstance()
+        If built-in functions were allowed,
+        t would be clever to use isinstance()
         (or match-case in Python 3.10) to simplify type checks.
     """
     obj_type = type(object)
@@ -21,6 +22,7 @@ def all_thing_is_obj(object: any) -> int:
     else:
         print("Type not found")
     return 42
+
 
 if __name__ == "__main__":
     # No action when run directly

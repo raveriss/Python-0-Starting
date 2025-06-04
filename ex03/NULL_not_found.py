@@ -2,8 +2,10 @@
 
 """
 Module: NULL_not_found
-Defines a function to identify "null-like" values and display their value and type.
+Defines a function to identify "null-like" values
+and display their value and type.
 """
+
 
 def NULL_not_found(object: any) -> int:
     """
@@ -19,7 +21,8 @@ def NULL_not_found(object: any) -> int:
         1 otherwise (and prints "Type not Found").
 
     Note:
-        If built-in functions were allowed, it would be clever to use isinstance()
+        If built-in functions were allowed,
+        it would be clever to use isinstance()
         to simplify type checks (e.g., isinstance(object, float)).
     """
     # Check for None
@@ -45,6 +48,7 @@ def NULL_not_found(object: any) -> int:
     # Unrecognized type
     print("Type not Found")
     return 1
+
 
 if __name__ == "__main__":
     # No action when run directly

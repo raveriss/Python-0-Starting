@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import sys
 
+
 def ft_filter(function, iterable):
     """
 ft_filter(function or None, iterable) --> filter object
@@ -12,8 +13,10 @@ is true. If function is None, return the items that are true.
         return [item for item in iterable if item]
     return [item for item in iterable if function(item)]
 
+
 # Assigner la docstring de la fonction native filter à ft_filter
 ft_filter.__doc__ = filter.__doc__
+
 
 def main():
     """
@@ -21,41 +24,84 @@ def main():
     Chaque test recrée ses données pour éviter l’épuisement des itérables.
     """
     # Définition des tests : (nom, prédicat, factory d'itérable)
+    def is_even(x):
+        return x % 2 == 0
+
+    def is_odd(x):
+        return x % 2 != 0
+
+    def greater_than_three(x):
+        return x > 3
+
+    def contains_a(s):
+        return 'a' in s
+
+    def non_empty(lst):
+        return bool(lst)
+
+    def always_false(x):
+        return False
+
+    # Générateurs de données pour chaque cas :
+    def gen_1_to_6():
+        return [1, 2, 3, 4, 5, 6]
+
+    def gen_range_6():
+        return range(6)
+
+    def gen_strings_with_a():
+        return ('apple', 'banana', 'cherry', 'date', '')
+
+    def gen_nested_lists():
+        return [[], [1], [], [0, 2], []]
+
+    def gen_range_10():
+        return list(range(10))
+
+    def gen_mixed_truth():
+        return [0, False, '', 'Bonjour', 42, None]
+
+    def gen_small_list():
+        return [1, 2, 3, 4]
+
+    # 2) On construit ensuite le tableau de tests sans aucun lambda :
+
     test_cases = [
-        ("Nombres pairs",                      lambda x: x % 2 == 0,         lambda: [1,2,3,4,5,6]),
-        ("Nombres impairs",                    lambda x: x % 2 != 0,         lambda: [1,2,3,4,5,6]),
-        ("> 3 dans un range",                  lambda x: x > 3,              lambda: range(6)),
-        ("Chaînes contenant 'a'",              lambda s: 'a' in s,           lambda: ('apple','banana','cherry','date','')),
-        ("Listes imbriquées non-vides",        lambda lst: bool(lst),        lambda: [[], [1], [], [0,2], []]),
-        ("Nombres >5 dans une liste",          lambda x: x > 5,              lambda: list(range(10))),  # rectifié
-        ("Filtre par vérité (function=None)",  None,                         lambda: [0, False, '', 'Bonjour', 42, None]),
-        ("Toujours False",                     lambda x: False,              lambda: [1,2,3,4]),
+        ("Nombres pairs", is_even, gen_1_to_6),
+        ("Nombres impairs", is_odd, gen_1_to_6),
+        ("> 3 dans un range", greater_than_three, gen_range_6),
+        ("Chaînes contenant 'a'", contains_a, gen_strings_with_a),
+        ("Listes imbriquées non-vides", non_empty, gen_nested_lists),
+        ("Nombres >5 dans une liste", greater_than_three, gen_range_10),
+        ("Filtre par vérité (function=None)", None, gen_mixed_truth),
+        ("Toujours False", always_false, gen_small_list),
     ]
 
     for name, pred, data_factory in test_cases:
-        data1   = data_factory()
-        data2   = data_factory()
+        data1 = data_factory()
+        data2 = data_factory()
         attendu = list(filter(pred, data1))
-        obtenu  = ft_filter(pred, data2)
+        obtenu = ft_filter(pred, data2)
         print(f"Cas de test : {name}")
-        print(f"  Données    : {data2!r}")
-        print(f"  Prédicat   : {pred}")
-        print(f"  Attendu    : {attendu}")
-        print(f"  Obtenu     : {obtenu}")
-        print(f"  {'✅ Succès' if obtenu == attendu else '❌ Échec'}\n")
+        print(f" Données : {data2!r}")
+        print(f" Prédicat : {pred}")
+        print(f" Attendu : {attendu}")
+        print(f" Obtenu : {obtenu}")
+        print(f" {'✅ Succès' if obtenu == attendu else '❌ Échec'}\n")
 
     # Test d'une fonction non-callable (doit lever TypeError)
     try:
-        ft_filter(123, [1,2,3])
+        ft_filter(123, [1, 2, 3])
         print("❌ Échec: aucune exception pour function non-callable")
     except TypeError:
         print("✅ Succès: TypeError levée pour function non-callable")
 
     # Vérification de la docstring
     if ft_filter.__doc__ == filter.__doc__:
-        print("✅ Succès: la docstring de ft_filter correspond à celle de filter")
+        print("✅ Succès: docstring correspond à celle de filter")
     else:
-        print("❌ Échec: la docstring de ft_filter ne correspond pas à celle de filter")
+        print("❌ Échec: docstring ne correspond pas à celle de filter")
+
 
 if __name__ == "__main__":
     try:

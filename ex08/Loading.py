@@ -8,13 +8,13 @@ def ft_tqdm(lst: range) -> None:
     :yield: chaque élément de lst
     """
     total = len(lst)
-    bar_length = 30
+    bar_length = 41
 
     for index, elem in enumerate(lst):
         done = index + 1
         percent = int(done * 100 / total)
         filled = int(done * bar_length / total)
-        # Construire la barre : '=' sur la partie remplie, '>' pour l'indicateur, espaces sinon
+        # Construction de la barre de progression
         bar = '=' * filled + '>' + ' ' * (bar_length - filled)
         # Affichage minimaliste
         print(f"\r{percent:3d}%|[{bar}]| {done}/{total}", end='', flush=True)

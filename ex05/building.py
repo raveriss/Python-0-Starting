@@ -1,5 +1,6 @@
 import sys
 
+
 def parse_args():
     """Parse command line arguments and return the text to count.
 
@@ -24,14 +25,16 @@ def count_chars(text):
         text (str): The input text to analyze.
 
     Returns:
-        dict: A mapping with keys 'total', 'upper', 'lower', 'punctuation', 'spaces', 'digits'.
+        dict: A mapping with keys 'total', 'upper', 'lower', 'punctuation',
+        'spaces', 'digits'.
     """
     total = len(text)
     upper = sum(1 for c in text if c.isupper())
     lower = sum(1 for c in text if c.islower())
     digits = sum(1 for c in text if c.isdigit())
     spaces = sum(1 for c in text if c.isspace())
-    # On considère comme "ponctuation" tout caractère qui n'est ni alphanumérique ni un espace
+    # On considère comme "ponctuation"
+    # tout caractère qui n'est ni alphanumérique ni un espace
     punctuation = sum(1 for c in text if not (c.isalnum() or c.isspace()))
     return {
         'total': total,

@@ -10,14 +10,16 @@ if len(args) == 0:
 
 # Plus d'un argument : erreur
 if len(args) > 1:
-    print("AssertionError: more than one argument is provided", file=sys.stderr)
+    msg = "AssertionError: more than one argument is provided"
+    print(msg, file=sys.stderr)
     sys.exit(1)
 
 arg = args[0]
 
 # Vérifie que l'argument est un entier (avec signe éventuel)
 if not arg.lstrip('-').isdigit():
-    print("AssertionError: argument is not an integer", file=sys.stderr)
+    msg = "AssertionError: argument is not an integer"
+    print(msg, file=sys.stderr)
     sys.exit(1)
 
 n = int(arg)

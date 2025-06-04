@@ -2,12 +2,14 @@
 import sys
 from ft_filter import ft_filter
 
+
 def main():
     """
     Accepts two arguments: a string S and an integer N.
     Outputs a list of words from S whose length is strictly greater than N.
     Uses at least one list comprehension and one lambda.
-    Raises AssertionError("the arguments are bad") on wrong count or type of arguments.
+    Raises AssertionError("the arguments are bad") on wrong count
+    or type of arguments.
     """
     # Validate argument count
     if len(sys.argv) != 3:
@@ -21,10 +23,10 @@ def main():
 
     words = s.split(" ")
     # Lambda to test word length
-    pred = lambda x: len(x) > n
     # Apply ft_filter and list comprehension
-    result = [w for w in ft_filter(pred, words)]
+    result = [w for w in ft_filter(lambda x: len(x) > n, words)]
     print(result)
+
 
 if __name__ == "__main__":
     try:

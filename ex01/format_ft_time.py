@@ -10,7 +10,9 @@ locale.setlocale(locale.LC_TIME, "C")
 seconds = time.time()
 rounded = f"{seconds:,.4f}"
 scientific = f"{seconds:.2e}"
-print(f"Seconds since January 1, 1970: {rounded} or {scientific} in scientific notation")
+
+print(f"Seconds since January 1, 1970: {rounded} "
+      f"or {scientific} in scientific notation")
 
 # 2) Date courante au format '%b %d %Y' (ex : May 20 2025)
 print(datetime.datetime.now().strftime("%b %d %Y"))

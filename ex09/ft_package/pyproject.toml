@@ -1,0 +1,51 @@
+# Section indiquant au système de build comment construire le package
+[build-system]
+
+# Spécifie les paquets nécessaires pour construire le projet : setuptools (version ≥ 61.0) pour gérer la création de distributions,
+# et wheel pour générer des fichiers .whl (roues) à installer.
+requires = ["setuptools>=61.0", "wheel"]
+
+# Précise le "backend" à utiliser pour la construction ; ici, on délègue à setuptools.build_meta
+build-backend = "setuptools.build_meta"
+
+# Section contenant les métadonnées du projet, selon la PEP 621
+[project]
+
+# Nom du projet/package tel qu’il apparaîtra sur PyPI (ou pour l’installation locale)
+name = "ft_package"
+
+# Version actuelle du package (convention sémantique MAJOR.MINOR.PATCH)
+version = "0.0.1"
+
+# Courte description du package (affichée sur PyPI)
+description = "Fonctions simples pour compter des occurrences dans des listes."
+
+# Fichier README à utiliser comme description longue (Markdown) sur PyPI
+readme = "README.md"
+
+# Licence du projet en syntaxe SPDX (permet aux outils de reconnaître « MIT »)
+license = "MIT"
+
+# Liste des fichiers contenant le texte complet de la licence à inclure dans la distribution
+license-files = ["LICENSE"]
+
+# Liste des auteurs/mainteneurs du projet, chaque entrée est un objet { name, email }
+authors = [
+  { name = "raveriss", email = "raveriss@student.42.fr" }
+]
+
+# URLs utiles pour le projet : ici, la page d’accueil (dépôt GitHub)
+urls = { "Homepage" = "https://github.com/raveriss/Python-0-Starting" }
+
+# Classifiers officiels PyPI pour indiquer la compatibilité du projet
+classifiers = [
+  # Indique que ce package est destiné à Python 3
+  "Programming Language :: Python :: 3",
+  
+  # Indique que le package fonctionne sur tout système d’exploitation
+  "Operating System :: OS Independent"
+]
+
+# Liste des dépendances runtime du package (installées automatiquement à l’installation).
+# Vide ici, car ft_package n’a pas de dépendances externes.
+dependencies = []
