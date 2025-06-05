@@ -8,6 +8,8 @@ Project-URL: Homepage, https://github.com/raveriss/Python-0-Starting
 Classifier: Programming Language :: Python :: 3
 Classifier: Operating System :: OS Independent
 Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
 
 # ft_package
 

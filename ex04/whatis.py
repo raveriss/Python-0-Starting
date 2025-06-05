@@ -16,8 +16,10 @@ if len(args) > 1:
 
 arg = args[0]
 
-# Vérifie que l'argument est un entier (avec signe éventuel)
-if not arg.lstrip('-').isdigit():
+# On laisse Python vérifier la syntaxe de l'entier
+try:
+    n = int(arg)
+except ValueError:
     msg = "AssertionError: argument is not an integer"
     print(msg, file=sys.stderr)
     sys.exit(1)

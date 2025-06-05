@@ -50,6 +50,6 @@ def NULL_not_found(object: any) -> int:
     return 1
 
 
-if __name__ == "__main__":
-    # No action when run directly
-    pass
+# if __name__ == "__main__":
+#     # No action when run directly
+#     pass

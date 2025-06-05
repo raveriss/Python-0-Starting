@@ -24,6 +24,6 @@ def all_thing_is_obj(object: any) -> int:
     return 42
 
 
-if __name__ == "__main__":
-    # No action when run directly
-    pass
+# if __name__ == "__main__":
+#     # No action when run directly
+#     pass

@@ -1,51 +1,71 @@
-# Section indiquant au système de build comment construire le package
+# PEP : Python Enhancement Proposal
+# pip : initialement “Pip Installs Packages” (installateur de paquets Python)
+# sdist : source distribution (archive de distribution au format source)
+# PyPI : Python Package Index
+# MIT : Massachusetts Institute of Technology (licence MIT)
+# SPDX : Software Package Data Exchange (format standard pour identifier les licences)
+
+# Indique que la construction du package suit la norme PEP 517
+# Cette section est l’entrée principale pour pip : elle lui précise
+# les outils nécessaires et le backend de build à utiliser.
 [build-system]
 
-# Spécifie les paquets nécessaires pour construire le projet : setuptools (version ≥ 61.0) pour gérer la création de distributions,
-# et wheel pour générer des fichiers .whl (roues) à installer.
+# Liste des bibliothèques à installer avant de démarrer la construction
+# – setuptools ≥ 61.0 : version minimale fournissant build_meta, qui implémente
+#   les hooks PEP 517/660 pour générer métadonnées, sdist et wheel.
+# – wheel : outil tiers chargé de créer l’archive .whl finale (binaire prêt à installer).
 requires = ["setuptools>=61.0", "wheel"]
 
-# Précise le "backend" à utiliser pour la construction ; ici, on délègue à setuptools.build_meta
+# Module exact qui orchestrera la construction. Ici, build_meta de setuptools
+# prend en charge toutes les étapes PEP 517 (prepare_metadata, build_wheel, build_sdist).
 build-backend = "setuptools.build_meta"
 
-# Section contenant les métadonnées du projet, selon la PEP 621
+# Section regroupant toutes les métadonnées du projet, selon la PEP 621
+# Ces informations sont lues par pip, les outils de publication et PyPI :
+# nom, version, description, dépendances, licence, auteurs, etc.
 [project]
 
-# Nom du projet/package tel qu’il apparaîtra sur PyPI (ou pour l’installation locale)
+# Nom unique du package sur PyPI et pour l’installation locale.
+# Doit être normalisé en minuscules sur l’index, mais on peut déclarer des majuscules.
 name = "ft_package"
 
-# Version actuelle du package (convention sémantique MAJOR.MINOR.PATCH)
+# Numéro de version suivant la convention sémantique (MAJOR.MINOR.PATCH).
+# Permet aux utilisateurs et outils de distinguer les releases et gérer les mises à jour.
 version = "0.0.1"
 
-# Courte description du package (affichée sur PyPI)
+# Brève description visible dans les résultats de recherche PyPI.
+# Rassure l’utilisateur sur le contenu et l’utilité du package.
 description = "Fonctions simples pour compter des occurrences dans des listes."
 
-# Fichier README à utiliser comme description longue (Markdown) sur PyPI
+# Fichier README (Markdown) servant de documentation longue sur PyPI.
+# Contient tutoriels, exemples et détails d’installation.
 readme = "README.md"
 
-# Licence du projet en syntaxe SPDX (permet aux outils de reconnaître « MIT »)
+# Licence du projet, sous forme SPDX. Permet aux outils de reconnaître automatiquement « MIT ».
 license = "MIT"
 
-# Liste des fichiers contenant le texte complet de la licence à inclure dans la distribution
+# Texte complet de la licence à inclure dans la distribution.
+# Garantit que l’utilisateur final dispose du fichier légal dans l’archive.
 license-files = ["LICENSE"]
 
-# Liste des auteurs/mainteneurs du projet, chaque entrée est un objet { name, email }
+# Liste des auteurs/mainteneurs, avec nom et adresse email.
+# Sert à contacter le responsable en cas de bug ou question.
 authors = [
   { name = "raveriss", email = "raveriss@student.42.fr" }
 ]
 
-# URLs utiles pour le projet : ici, la page d’accueil (dépôt GitHub)
+# URLs importantes liées au projet : dépôt, documentation externe, etc.
+# Ici, on pointe vers la page GitHub pour le code source et les issues.
 urls = { "Homepage" = "https://github.com/raveriss/Python-0-Starting" }
 
-# Classifiers officiels PyPI pour indiquer la compatibilité du projet
+# Classifiers standardisés PyPI : version Python prise en charge et compatibilité OS.
+# Ces tags facilitent la recherche et filtrent les packages sur PyPI.
 classifiers = [
-  # Indique que ce package est destiné à Python 3
   "Programming Language :: Python :: 3",
-  
-  # Indique que le package fonctionne sur tout système d’exploitation
   "Operating System :: OS Independent"
 ]
 
-# Liste des dépendances runtime du package (installées automatiquement à l’installation).
-# Vide ici, car ft_package n’a pas de dépendances externes.
+# Dépendances runtime installées automatiquement lors de pip install.
+# Vide : ce package n’a pas de dépendances externes.
+# Si nécessaire, on peut indiquer des contraintes comme "requests>=2.0,<3.0".
 dependencies = []
