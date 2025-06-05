@@ -1,11 +1,16 @@
+# pyright: reportInvalidTypeForm=false
 def ft_tqdm(lst: range) -> None:
     """
-    Implémentation minimaliste de tqdm avec yield, sans imports externes.
-    Affiche un pourcentage, une barre de progression statique de 40 caractères,
-    et le compteur courant/total. La barre reste visible après la fin.
+    Implémentation minimaliste de tqdm avec l'opérateur `yield`, sans aucun import externe.
+    La fonction affiche un pourcentage, une barre de progression fixe de 41 caractères,
+    ainsi qu'un compteur du type courant/total. La barre reste visible après la fin de l'itération.
 
-    :param lst: itérable (range) à parcourir
-    :yield: chaque élément de lst
+    Bien que la fonction utilise `yield` (ce qui en fait techniquement un générateur),
+    la signature `-> None` est imposée par le sujet. Elle est donc conservée malgré son incompatibilité
+    avec le comportement réel de la fonction. Cette anomalie peut être ignorée dans ce contexte pédagogique.
+
+    :param lst: itérable de type range à parcourir
+    :yield: chaque élément de lst, un par un
     """
     total = len(lst)
     bar_length = 41

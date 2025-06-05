@@ -1,1 +1,27 @@
+# Environnement virtuel
 .venv/
+venv/
+
+# Fichiers temporaires ou caches
+__pycache__/
+*.py[cod]
+*.swp
+*~
+
+# Sorties de tests ou d'exécution
+*.log
+*.out
+*.tmp
+
+# Fichiers générés automatiquement
+.DS_Store  # macOS
+Thumbs.db  # Windows
+
+# Dossiers de l’éditeur ou IDE
+.vscode/
+.idea/
+
+# Fichiers de paquets Python (si tu t'exerces avec setuptools)
+dist/
+build/
+*.egg-info/
